@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="sportsStore">
+<head>
+    <meta charset="UTF-8">
+    <title>运动商店</title>
+    <script src="../angular.js"></script>
+    <link href="../bootstrap.css" rel="stylesheet" />
+    <link href="../bootstrap-theme.css" rel="stylesheet" />
+
+    <script>
+        angular.module('sportsStore',['customFilters','cart','ngRoute'])
+                .config(function ($routeProvider) {
+                    $routeProvider.when('/complete',{
+                        templateUrl:'views/thankYou.html'
+                    });
+                    $routeProvider.when('/placeOrder',{
+                        templateUrl:'views/placeOrder.html'
+                    });
+                    $routeProvider.when('/checkout',{
+                        templateUrl:'views/checkoutSummary.html'
+                    });
+                    $routeProvider.when('/products',{
+                        templateUrl:'views/productList.html'
+                    });
+                    $routeProvider.otherwise({
+                        templateUrl:'views/productList.html'
+                    })
+                })
+    </script>
+    <script src="controller/sportsStore.js"></script>
+    <script src="filters/customFilters.js"></script>
+    <script src="controller/productListCtrl.js"></script>
+    <script src="components/cart/cart.js"></script>
+    <script src="angular-route.js"></script>
+    <script src="controller/checkoutCtrl.js"></script>
+</head>
+<body ng-controller="sportsStoreCtrl">
+<div class="navbar navbar-inverse">
+    <a class="navbar-brand" href="#">运动商店</a>
+    <cart-summary />
+</div>
+<!--数据从远程访异常时-->
+<div class="alert alert-danger" ng-show="data.error">
+    不好意思数据异常啊 ({{data.error.status}}).
+    <a href="app.html" class="alert-link">点击在抢救一下</a>
+</div>
+<!--引入商品列表-->
+<!--<ng-include src="'views/productList.html'"></ng-include>-->
+<ng-view />
+</body>
+</html>

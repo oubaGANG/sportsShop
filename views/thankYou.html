@@ -1,0 +1,10 @@
+﻿<div class="alert alert-danger" ng-show="data.orderError">
+   发生突发事件 ({{data.orderError.status}}). 这个订单完成不了.
+    <a href="#/placeorder" class="alert-link">再试一下</a>
+</div>
+
+<div class="well" ng-hide="data.orderError">
+    <h2>感谢!</h2>
+    感谢你在本店购物，我们会尽快把货物发送给你。如果需要联系我们，
+    请用订单号{{data.orderId}}.
+</div>

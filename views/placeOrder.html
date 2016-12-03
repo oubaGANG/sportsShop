@@ -1,0 +1,89 @@
+﻿<style>
+    .ng-invalid { background-color: lightpink; }
+    .ng-valid { background-color: lightgreen; }
+    span.error { color: red; font-weight: bold; }
+</style>
+<!--
+没有使用ng-controller指令制定控制器。意味着视图将被顶级控制器sportsStoreCtrl支持
+-->
+<h2>填写收货信息</h2>
+<p>请详细的填写，确保我们可以正确发货给你!</p>
+
+<form name="shippingForm" novalidate>
+    <div class="well">
+        <h3>姓名</h3>
+        <div class="form-group">
+            <label></label>
+            <input name="name" class="form-control"
+                   ng-model="data.shipping.name" required />
+            <span class="error" ng-show="shippingForm.name.$error.required">
+               请输入姓名
+            </span>
+
+        </div>
+
+        <h3>联系地址</h3>
+
+        <div class="form-group">
+            <label>详细地址</label>
+            <input name="street" class="form-control"
+                   ng-model="data.shipping.street" required />
+            <span class="error" ng-show="shippingForm.street.$error.required">
+                请输入地址
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>城市</label>
+            <input name="city" class="form-control"
+                   ng-model="data.shipping.city" required />
+            <span class="error" ng-show="shippingForm.city.$error.required">
+                请输入所在城市
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>街道</label>
+            <input name="state" class="form-control"
+                   ng-model="data.shipping.state" required />
+            <span class="error" ng-show="shippingForm.state.$error.required">
+                请输入所在街道
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>邮编</label>
+            <input name="zip" class="form-control"
+                   ng-model="data.shipping.zip" required />
+            <span class="error" ng-show="shippingForm.zip.$error.required">
+               请输入邮编
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label>国家</label>
+            <input name="country" class="form-control"
+                   ng-model="data.shipping.country" required />
+            <span class="error" ng-show="shippingForm.country.$error.required">
+                 请输入所在国家
+            </span>
+        </div>
+
+        <h3>其他</h3>
+        <div class="checkbox">
+            <label>
+                <input name="giftwrap" type="checkbox"
+                       ng-model="data.shipping.giftwrap" />
+               其他信息
+            </label>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" ng-disabled="shippingForm.$invalid"
+                    ng-click="sendOrder(data.shipping)"
+                    class="btn btn-default">
+                完成订购
+            </button>
+        </div>
+    </div>
+</form>
